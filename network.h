@@ -15,6 +15,7 @@ private:
 	// Returns user ID (index in the 'profiles' array) by their username
 	// (or -1 if username is not found)
 	int findID(std::string usrn);
+	bool following[MAX_USERS][MAX_USERS];
 public:
 	// Constructor, makes an empty network (numUsers = 0)
 	Network();
@@ -25,4 +26,7 @@ public:
 	bool checkAlphaNum(std::string usrn);
 	bool checkOtherUsers(std::string usrn);
 	bool checkProfilesFull();
+	
+	bool follow(std::string usrn1, std::string usrn2);
+	void printDot();
 };
