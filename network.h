@@ -21,4 +21,8 @@ public:
 	// Attempts to sign up a new user with specified username and displayname
 	// return true if the operation was successful, otherwise return false
 	bool addUser(std::string usrn, std::string dspn);
+	
+	bool checkAlphaNum(std::string usrn);
+	bool checkOtherUsers(std::string usrn);
+	bool checkProfilesFull();
 };

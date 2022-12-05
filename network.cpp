@@ -1,13 +1,14 @@
 #include <iostream>
 #include <cwctype>
+#include <string>
 #include "network.h"
 
 int Network::findID(std::string usrn)
 {
 	int num = -1;
-	for (int i=0; i<sizeof(profiles); i++)
+	for (int i=0; i<20; i++)
 	{
-		if (profiles[i].username==usrn)
+		if (profiles[i].getUsername()==usrn)
 		{
 			num = i;
 		}
@@ -22,7 +23,15 @@ Network::Network()
 
 bool Network::addUser(std::string usrn, std::string dspn)
 {
-	
+	bool pass = false;
+	if (checkAlphaNum(usrn) && checkOtherUsers(usrn) && checkProfilesFull())
+	{
+		Profile per = Profile(usrn, dspn);
+		profiles[numUsers] = per;
+		numUsers++;
+		pass = true;
+	}
+	return pass;
 }
 
 bool Network::checkAlphaNum(std::string usrn)
@@ -58,5 +67,9 @@ bool Network::checkOtherUsers(std::string usrn)
 bool Network::checkProfilesFull()
 {
 	bool check = true;
-	
+	if (numUsers==20)
+	{
+		check = false;
+	}
+	return check;
 }
